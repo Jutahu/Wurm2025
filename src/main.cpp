@@ -184,7 +184,10 @@ public:
         snake.Reset();
         food.position = food.GenerateRandomPos(snake.body);
         running = false;
+        if (score>=hiscore)
+        {
         hiscore = score;
+        }
         score = 0;
         PlaySound(wallSound);
     }
