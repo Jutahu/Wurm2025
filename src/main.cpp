@@ -52,7 +52,7 @@ public:
             float x = body[i].x;
             float y = body[i].y;
             Rectangle segment = Rectangle{offset+x * cellSize, offset+y * cellSize, (float)cellSize, (float)cellSize};
-            DrawRectangleRounded(segment, 0.5, 6, GOLD);
+            DrawRectangleRounded(segment, 0.75, 6, PINK);
         }
     }
 
