@@ -40,6 +40,21 @@ add_executable(${PROJECT_NAME} ${all_SRCS})
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 
+file(GLOB_RECURSE ASSETS "${CMAKE_SOURCE_DIR}/include/*")
+foreach(ASSET ${ASSETS})
+    file(RELATIVE_PATH ASSET_RELATIVE_PATH "${CMAKE_SOURCE_DIR}/" ${ASSET})
+
+    ##build directory
+    set(DESTINATION_PATH "${CMAKE_BINARY_DIR}/${ASSET_RELATIVE_PATH}")
+
+    ##copy to target path
+    add_custom_command(
+        TARGET Matopeli2025 POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${ASSET} ${PROJECT_SOURCE_DIR}/BUILD
+        COMMENT "Copying: ${ASSET_RELATIVE_PATH}"
+    )
+endforeach()
+
 # Web Configurations
 
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
